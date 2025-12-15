@@ -23,6 +23,5 @@ export interface CategoryData {
 
 export enum AppTab {
   DASHBOARD = 'dashboard',
-  TRANSACTIONS = 'transactions',
-  ADVISOR = 'advisor'
+  TRANSACTIONS = 'transactions'
 }

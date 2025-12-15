@@ -2,12 +2,11 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Transaction, FinancialSummary, AppTab } from './types';
 import Dashboard from './components/Dashboard';
 import TransactionManager from './components/TransactionManager';
-import AIAdvisor from './components/AIAdvisor';
-import { LayoutDashboard, List, BrainCircuit, Wallet, Menu, X } from 'lucide-react';
+import { LayoutDashboard, List, Wallet, Menu, X } from 'lucide-react';
 
 const App: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>(() => {
-    const saved = localStorage.getItem('financas-ai-transactions');
+    const saved = localStorage.getItem('finapp-transactions');
     return saved ? JSON.parse(saved) : [];
   });
 
@@ -15,7 +14,7 @@ const App: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem('financas-ai-transactions', JSON.stringify(transactions));
+    localStorage.setItem('finapp-transactions', JSON.stringify(transactions));
   }, [transactions]);
 
   const summary: FinancialSummary = useMemo(() => {
@@ -68,7 +67,7 @@ const App: React.FC = () => {
                 <Wallet size={24} />
               </div>
               <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
-                Finanças AI
+                FinApp
               </span>
             </div>
 
@@ -76,7 +75,6 @@ const App: React.FC = () => {
             <nav className="hidden sm:flex items-center gap-2">
               <NavItem tab={AppTab.DASHBOARD} icon={LayoutDashboard} label="Visão Geral" />
               <NavItem tab={AppTab.TRANSACTIONS} icon={List} label="Transações" />
-              <NavItem tab={AppTab.ADVISOR} icon={BrainCircuit} label="Consultor AI" />
             </nav>
 
             {/* Mobile Menu Button */}
@@ -94,7 +92,6 @@ const App: React.FC = () => {
           <div className="sm:hidden border-t border-slate-100 bg-white p-4 space-y-2 shadow-lg animate-in slide-in-from-top-4 duration-200 absolute w-full z-40">
             <NavItem tab={AppTab.DASHBOARD} icon={LayoutDashboard} label="Visão Geral" />
             <NavItem tab={AppTab.TRANSACTIONS} icon={List} label="Transações" />
-            <NavItem tab={AppTab.ADVISOR} icon={BrainCircuit} label="Consultor AI" />
           </div>
         )}
       </header>
@@ -111,14 +108,11 @@ const App: React.FC = () => {
             onDeleteTransaction={handleDeleteTransaction}
           />
         )}
-        {activeTab === AppTab.ADVISOR && (
-          <AIAdvisor transactions={transactions} />
-        )}
       </main>
       
       <footer className="bg-white border-t border-slate-200 py-6 mt-auto">
          <div className="max-w-7xl mx-auto px-4 text-center text-slate-400 text-sm">
-            © {new Date().getFullYear()} Finanças AI. Powered by Google Gemini.
+            © {new Date().getFullYear()} FinApp. Powered by Google Gemini.
          </div>
       </footer>
     </div>

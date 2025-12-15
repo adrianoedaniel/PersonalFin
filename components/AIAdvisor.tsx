@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Transaction } from '../types';
 import { getFinancialInsights } from '../services/geminiService';
 import { Bot, Sparkles, RefreshCw } from 'lucide-react';
-import ReactMarkdown from 'react-markdown'; // Actually, we'll use a simple parser or just whitespace-pre-wrap to avoid deps. Prompt requested popular libs but let's keep it robust with CSS.
 
 interface AIAdvisorProps {
   transactions: Transaction[];
@@ -64,7 +63,6 @@ const AIAdvisor: React.FC<AIAdvisorProps> = ({ transactions }) => {
              </button>
            </div>
            <div className="p-8 prose prose-slate max-w-none text-slate-700 leading-relaxed">
-             {/* Simple markdown rendering for key elements since we are avoiding complex deps if possible, but let's assume raw text is fine with whitespace */}
              <div className="whitespace-pre-line font-medium text-base">
                 {insight}
              </div>
