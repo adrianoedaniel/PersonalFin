@@ -1,0 +1,5 @@
+{
+  "name": "PersonalFin",
+  "description": "Controle financeiro pessoal inteligente com insights gerados pelo Gemini.",
+  "requestFramePermissions": []
+}
